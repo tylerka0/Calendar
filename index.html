@@ -7,14 +7,13 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
-                        serif: ['Playfair Display', 'serif'],
                     }
                 }
             }
@@ -27,62 +26,22 @@
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #27272a; border-radius: 3px; }
     </style>
 </head>
-<body class="min-h-screen flex">
+<body class="min-h-screen flex justify-center">
 
-    <aside class="w-64 border-r border-zinc-800 bg-[#0f0f11] p-6 flex flex-col justify-between hidden md:flex shrink-0">
-        <div>
-            <div class="text-xs font-bold tracking-widest text-zinc-400 uppercase mb-8">Personal HQ</div>
-            
-            <nav class="space-y-6">
-                <div>
-                    <div class="text-[10px] font-semibold text-zinc-500 tracking-wider uppercase mb-2">Overview</div>
-                    <a href="#" class="flex items-center space-x-3 bg-zinc-800/60 text-white px-3 py-2 rounded-lg text-sm font-medium">
-                        <span>📊</span> <span>Dashboard</span>
-                    </a>
-                </div>
-
-                <div>
-                    <div class="text-[10px] font-semibold text-zinc-500 tracking-wider uppercase mb-2">Protocols</div>
-                    <div class="space-y-1 text-sm text-zinc-400">
-                        <a href="#" class="flex items-center space-x-3 px-3 py-1.5 hover:text-white transition"><span>🔥</span> <span>Training</span></a>
-                        <a href="#" class="flex items-center space-x-3 px-3 py-1.5 hover:text-white transition"><span>✨</span> <span>Aesthetic analysis</span></a>
-                    </div>
-                </div>
-
-                <div>
-                    <div class="text-[10px] font-semibold text-zinc-500 tracking-wider uppercase mb-2">System</div>
-                    <div class="space-y-1 text-sm text-zinc-400">
-                        <a href="#" class="flex items-center space-x-3 px-3 py-1.5 hover:text-white transition"><span>💬</span> <span>Quote bank</span></a>
-                        <a href="#" class="flex items-center space-x-3 px-3 py-1.5 hover:text-white transition"><span>⚙️</span> <span>Settings</span></a>
-                    </div>
-                </div>
-            </nav>
-        </div>
-
-        <div class="border-t border-zinc-800 pt-4 text-xs text-zinc-500">
-            <div>Race day</div>
-            <div class="text-zinc-300 font-medium mt-0.5">Dec 31, 2026</div>
-        </div>
-    </aside>
-
-    <main class="flex-1 min-w-0 overflow-y-auto h-screen p-6 md:p-12 custom-scrollbar max-w-4xl">
+    <main class="flex-1 min-w-0 overflow-y-auto h-screen p-6 md:p-12 custom-scrollbar max-w-4xl w-full">
         
-        <header class="mb-10">
-            <div class="text-xs text-zinc-400 font-medium uppercase tracking-wider mb-1" id="current-date-str">SUNDAY, JUNE 28, 2026</div>
+        <header class="mb-8">
+            <div class="text-xs text-zinc-500 font-medium uppercase tracking-wider mb-1" id="current-date-str">MONDAY, JUNE 29, 2026</div>
             <h1 class="text-4xl font-bold tracking-tight text-white mb-1">Good morning.</h1>
-            <div class="text-sm text-zinc-400" id="countdown-banner">Week 1 of pre-training · 186 days to race day</div>
+            <div class="text-sm text-zinc-400" id="countdown-banner">Pre-training phase · 185 days to race day</div>
         </header>
 
-        <section class="mb-10 py-6 border-y border-zinc-800">
-            <p class="font-serif text-2xl italic text-zinc-200">"The tree falls the way it leans."</p>
-        </section>
-
-        <section class="bg-[#141416] border border-zinc-800/80 rounded-xl p-6 mb-10">
+        <section class="bg-[#141416] border border-zinc-800/80 rounded-xl p-6 mb-8">
             <div class="flex justify-between items-start mb-4">
                 <div>
                     <span class="text-[10px] font-bold tracking-widest text-zinc-500 uppercase">Today's Protocol</span>
-                    <h2 class="text-xl font-semibold text-white mt-0.5" id="today-title">Rest & mobility</h2>
-                    <p class="text-sm text-zinc-400 mt-1" id="today-desc">Active recovery day. Light stretching or mobility work.</p>
+                    <h2 class="text-xl font-semibold text-white mt-0.5" id="today-title">Rest & Active Recovery</h2>
+                    <p class="text-sm text-zinc-400 mt-1" id="today-desc">Focus entirely on system decompression and mobility alignment.</p>
                 </div>
                 <div class="text-right">
                     <span class="text-xs font-mono text-purple-400 bg-purple-950/40 border border-purple-900/50 px-2 py-1 rounded" id="daily-percentage">0% Done</span>
@@ -97,13 +56,13 @@
                 </div>
         </section>
 
-        <section class="mb-10">
+        <section class="mb-8">
             <h3 class="text-[10px] font-bold tracking-widest text-zinc-500 uppercase mb-3">This Week</h3>
             <div class="grid grid-cols-7 gap-2" id="week-strip">
                 </div>
         </section>
 
-        <section class="mb-12">
+        <section class="mb-8">
             <h3 class="text-[10px] font-bold tracking-widest text-zinc-500 uppercase mb-4">PRE → POST SUMMER PROGRESS</h3>
             
             <div class="space-y-6 bg-[#141416]/40 border border-zinc-800/60 rounded-xl p-6">
@@ -129,37 +88,10 @@
             </div>
         </section>
 
-        <section>
-            <h3 class="text-[10px] font-bold tracking-widest text-zinc-500 uppercase mb-4">Sections</h3>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div class="bg-[#141416] border border-zinc-800 hover:border-zinc-700 transition p-5 rounded-xl flex flex-col justify-between h-32 cursor-pointer group">
-                    <div class="flex justify-between items-start">
-                        <span class="text-xl">⚡</span>
-                        <span class="text-zinc-600 group-hover:text-zinc-400 transition text-sm">→</span>
-                    </div>
-                    <div>
-                        <h4 class="text-sm font-semibold text-white">Training Plan</h4>
-                        <p class="text-xs text-zinc-500 mt-0.5">Half Ironman · Dec 31 · 20-week build</p>
-                    </div>
-                </div>
-
-                <div class="bg-[#141416] border border-zinc-800 hover:border-zinc-700 transition p-5 rounded-xl flex flex-col justify-between h-32 cursor-pointer group">
-                    <div class="flex justify-between items-start">
-                        <span class="text-xl">📸</span>
-                        <span class="text-zinc-600 group-hover:text-zinc-400 transition text-sm">→</span>
-                    </div>
-                    <div>
-                        <h4 class="text-sm font-semibold text-white">Aesthetic Analysis</h4>
-                        <p class="text-xs text-zinc-500 mt-0.5">Objective visual tracking & logs</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
     </main>
 
     <script>
-        // 1. DATABASE ROUTINE (Combines your exact Triathlon block + Hyper-focused project loads)
+        // DATABASE ROUTINE
         const routineTemplate = {
             0: { // Sunday
                 title: "Aerobic Baseline Run",
@@ -198,16 +130,13 @@
             }
         };
 
-        // Date Calculations matching 2026 Anchor Targets
         const raceDate = new Date("2026-12-31");
         const summerEndDate = new Date("2026-09-15");
-        const summerStartDate = new Date("2026-06-01"); // Base baseline reference line
+        const summerStartDate = new Date("2026-06-01"); 
 
-        // Use precise browser clock matching your system environment 
         let systemToday = new Date();
-        let selectedDayIndex = systemToday.getDay(); // Tracks what day user is viewing
+        let selectedDayIndex = systemToday.getDay(); 
 
-        // Local Storage State Managers
         function getStorageKey(dateObj) {
             return `hq_tasks_${dateObj.getFullYear()}-${dateObj.getMonth()+1}-${dateObj.getDate()}`;
         }
@@ -221,7 +150,6 @@
             if (saved) {
                 return JSON.parse(saved);
             } else {
-                // Map array to object structure
                 return defaults.map(t => ({ text: t, completed: false }));
             }
         }
@@ -232,9 +160,7 @@
             calculateMacroProgress();
         }
 
-        // DOM RENDERING ENGINES
         function initializeDashboard() {
-            // Setup Date Strings
             const options = { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' };
             document.getElementById("current-date-str").innerText = systemToday.toLocaleDateString('en-US', options).toUpperCase();
             
@@ -251,18 +177,14 @@
             const stripContainer = document.getElementById("week-strip");
             stripContainer.innerHTML = "";
             
-            // Generate standard viewing frame of past/present/future days centered around current week context
             let startOfWeek = new Date(systemToday);
-            startOfWeek.setDate(systemToday.getDate() - systemToday.getDay()); // Snap back to current week Sunday
+            startOfWeek.setDate(systemToday.getDate() - systemToday.getDay()); 
             
             for (let i = 0; i < 7; i++) {
                 let currentDayIter = new Date(startOfWeek);
                 currentDayIter.setDate(startOfWeek.getDate() + i);
                 
-                const isSystemToday = currentDayIter.toDateString() === systemToday.toDateString();
                 const isSelected = currentDayIter.getDay() === selectedDayIndex;
-                
-                // Pull compliance completion statuses for tiny visual dot indicators
                 const dayTasks = loadTasksForDay(currentDayIter);
                 const allDone = dayTasks.length > 0 && dayTasks.every(t => t.completed);
 
@@ -278,7 +200,7 @@
                     let targetDate = new Date(startOfWeek);
                     targetDate.setDate(startOfWeek.getDate() + i);
                     renderActiveDay(targetDate);
-                    renderWeekStrip(); // Redraw selection outline states
+                    renderWeekStrip(); 
                 };
 
                 dayCard.innerHTML = `
@@ -315,12 +237,9 @@
                     </label>
                 `;
 
-                // Add Toggle Event Listeners
                 taskRow.querySelector('input').addEventListener('change', (e) => {
                     tasks[index].completed = e.target.checked;
                     saveTasksForDay(targetDate, tasks);
-                    
-                    // Live UI Updates
                     updateDailyProgressMeter(tasks);
                     renderWeekStrip(); 
                 });
@@ -341,7 +260,6 @@
         }
 
         function calculateMacroProgress() {
-            // 1. Weekly aggregate updates
             let startOfWeek = new Date(systemToday);
             startOfWeek.setDate(systemToday.getDate() - systemToday.getDay());
             
@@ -360,7 +278,6 @@
             document.getElementById("weekly-total-text").innerText = `${completedWeeklyTasks}/${totalWeeklyTasks} verified`;
             document.getElementById("weekly-progress-bar").style.width = `${weekPct}%`;
 
-            // 2. Summer Countdown Timeline math
             const totalSummerMs = summerEndDate - summerStartDate;
             const totalSummerDays = Math.ceil(totalSummerMs / (1000 * 60 * 60 * 24));
             
@@ -374,7 +291,6 @@
             document.getElementById("summer-progress-bar").style.width = `${summerTimelinePct}%`;
         }
 
-        // Initialize Core Engine on Window Load
         window.onload = initializeDashboard;
     </script>
 </body>
