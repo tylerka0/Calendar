@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal HQ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;1,400&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #0f0f11; color: #f3f4f6; }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #18181b; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #27272a; border-radius: 3px; }
+    </style>
+</head>
+<body class="min-h-screen flex">
+
+    <aside class="w-64 border-r border-zinc-800 bg-[#0f0f11] p-6 flex flex-col justify-between hidden md:flex shrink-0">
+        <div>
+            <div class="text-xs font-bold tracking-widest text-zinc-400 uppercase mb-8">Personal HQ</div>
+            
+            <nav class="space-y-6">
+                <div>
+                    <div class="text-[10px] font-semibold text-zinc-500 tracking-wider uppercase mb-2">Overview</div>
+                    <a href="#" class="flex items-center space-x-3 bg-zinc-800/60 text-white px-3 py-2 rounded-lg text-sm font-medium">
+                        <span>📊</span> <span>Dashboard</span>
+                    </a>
+                </div>
+
+                <div>
+                    <div class="text-[10px] font-semibold text-zinc-500 tracking-wider uppercase mb-2">Protocols</div>
+                    <div class="space-y-1 text-sm text-zinc-400">
+                        <a href="#" class="flex items-center space-x-3 px-3 py-1.5 hover:text-white transition"><span>🔥</span> <span>Training</span></a>
+                        <a href="#" class="flex items-center space-x-3 px-3 py-1.5 hover:text-white transition"><span>✨</span> <span>Aesthetic analysis</span></a>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="text-[10px] font-semibold text-zinc-500 tracking-wider uppercase mb-2">System</div>
+                    <div class="space-y-1 text-sm text-zinc-400">
+                        <a href="#" class="flex items-center space-x-3 px-3 py-1.5 hover:text-white transition"><span>💬</span> <span>Quote bank</span></a>
+                        <a href="#" class="flex items-center space-x-3 px-3 py-1.5 hover:text-white transition"><span>⚙️</span> <span>Settings</span></a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <div class="border-t border-zinc-800 pt-4 text-xs text-zinc-500">
+            <div>Race day</div>
+            <div class="text-zinc-300 font-medium mt-0.5">Dec 31, 2026</div>
+        </div>
+    </aside>
+
+    <main class="flex-1 min-w-0 overflow-y-auto h-screen p-6 md:p-12 custom-scrollbar max-w-4xl">
+        
+        <header class="mb-10">
+            <div class="text-xs text-zinc-400 font-medium uppercase tracking-wider mb-1" id="current-date-str">SUNDAY, JUNE 28, 2026</div>
+            <h1 class="text-4xl font-bold tracking-tight text-white mb-1">Good morning.</h1>
+            <div class="text-sm text-zinc-400" id="countdown-banner">Week 1 of pre-training · 186 days to race day</div>
+        </header>
+
+        <section class="mb-10 py-6 border-y border-zinc-800">
+            <p class="font-serif text-2xl italic text-zinc-200">"The tree falls the way it leans."</p>
+        </section>
+
+        <section class="bg-[#141416] border border-zinc-800/80 rounded-xl p-6 mb-10">
+            <div class="flex justify-between items-start mb-4">
+                <div>
+                    <span class="text-[10px] font-bold tracking-widest text-zinc-500 uppercase">Today's Protocol</span>
+                    <h2 class="text-xl font-semibold text-white mt-0.5" id="today-title">Rest & mobility</h2>
+                    <p class="text-sm text-zinc-400 mt-1" id="today-desc">Active recovery day. Light stretching or mobility work.</p>
+                </div>
+                <div class="text-right">
+                    <span class="text-xs font-mono text-purple-400 bg-purple-950/40 border border-purple-900/50 px-2 py-1 rounded" id="daily-percentage">0% Done</span>
+                </div>
+            </div>
+
+            <div class="w-full bg-zinc-800 h-1.5 rounded-full mb-6 overflow-hidden">
+                <div id="daily-progress-bar" class="bg-purple-500 h-full w-0 transition-all duration-300"></div>
+            </div>
+
+            <div id="tasks-container" class="space-y-3">
+                </div>
+        </section>
+
+        <section class="mb-10">
+            <h3 class="text-[10px] font-bold tracking-widest text-zinc-500 uppercase mb-3">This Week</h3>
+            <div class="grid grid-cols-7 gap-2" id="week-strip">
+                </div>
+        </section>
+
+        <section class="mb-12">
+            <h3 class="text-[10px] font-bold tracking-widest text-zinc-500 uppercase mb-4">PRE → POST SUMMER PROGRESS</h3>
+            
+            <div class="space-y-6 bg-[#141416]/40 border border-zinc-800/60 rounded-xl p-6">
+                <div>
+                    <div class="flex justify-between text-sm mb-1.5">
+                        <span class="text-zinc-300 font-medium">Weekly Targets Checked</span>
+                        <span class="font-mono text-zinc-400" id="weekly-total-text">0/0</span>
+                    </div>
+                    <div class="w-full bg-zinc-800 h-1 rounded-full overflow-hidden">
+                        <div id="weekly-progress-bar" class="bg-zinc-400 h-full w-0 transition-all duration-300"></div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="flex justify-between text-sm mb-1.5">
+                        <span class="text-zinc-300 font-medium">Summer Countdown (Sept 15)</span>
+                        <span class="font-mono text-emerald-400" id="summer-days-left">-- days remaining</span>
+                    </div>
+                    <div class="w-full bg-zinc-800 h-1 rounded-full overflow-hidden">
+                        <div id="summer-progress-bar" class="bg-emerald-500 h-full w-0 transition-all duration-300"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h3 class="text-[10px] font-bold tracking-widest text-zinc-500 uppercase mb-4">Sections</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="bg-[#141416] border border-zinc-800 hover:border-zinc-700 transition p-5 rounded-xl flex flex-col justify-between h-32 cursor-pointer group">
+                    <div class="flex justify-between items-start">
+                        <span class="text-xl">⚡</span>
+                        <span class="text-zinc-600 group-hover:text-zinc-400 transition text-sm">→</span>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-semibold text-white">Training Plan</h4>
+                        <p class="text-xs text-zinc-500 mt-0.5">Half Ironman · Dec 31 · 20-week build</p>
+                    </div>
+                </div>
+
+                <div class="bg-[#141416] border border-zinc-800 hover:border-zinc-700 transition p-5 rounded-xl flex flex-col justify-between h-32 cursor-pointer group">
+                    <div class="flex justify-between items-start">
+                        <span class="text-xl">📸</span>
+                        <span class="text-zinc-600 group-hover:text-zinc-400 transition text-sm">→</span>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-semibold text-white">Aesthetic Analysis</h4>
+                        <p class="text-xs text-zinc-500 mt-0.5">Objective visual tracking & logs</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // 1. DATABASE ROUTINE (Combines your exact Triathlon block + Hyper-focused project loads)
+        const routineTemplate = {
+            0: { // Sunday
+                title: "Aerobic Baseline Run",
+                desc: "Steady state build to stretch capacity.",
+                tasks: ["🏃‍♂️ Run: 45–50m aerobic build", "🔬 Research: Solo lock-in (1 hr)", "✍️ ECN DOSE: Draft/Publish Article 2"]
+            },
+            1: { // Monday
+                title: "Rest & Active Recovery",
+                desc: "Focus entirely on system decompression and mobility alignment.",
+                tasks: ["🟢 Rest Day: Active recovery stretching & foam rolling", "📚 Classes: Attend lectures (3:00-5:00 PM)", "📄 Resume: Polish & refine details (1 hr)", "🔬 Research: Solo lock-in (1 hr)"]
+            },
+            2: { // Tuesday
+                title: "Aerobic Spin & Systems Check",
+                desc: "Flushing out the body while loading standard ML blocks.",
+                tasks: ["🚴‍♂️ Bike: 45m easy recovery spin", "🤖 ML Project: Strategy & coding sync with Tharun (1-2 hr)", "🔬 Research: Solo lock-in (1 hr)"]
+            },
+            3: { // Wednesday
+                title: "Swimming Mechanics & Core Academic Blocks",
+                desc: "Technique work in water followed by heavy output classes.",
+                tasks: ["🏊‍♂️ Swim: Technique drills (2x1200m or 1500m)", "📚 Classes: Attend lectures (3:00-5:00 PM)", "✍️ ECN DOSE: Draft/Publish Article 1", "🔬 Research: Solo lock-in (1 hr)"]
+            },
+            4: { // Thursday
+                title: "Conversational Pace & Architecture",
+                desc: "Sustaining regular steady states while building progress pipelines.",
+                tasks: ["🏃‍♂️ Run: 30–35m easy conversational pace", "🤖 ML Project: Code execution with Tharun (1-2 hr)", "📄 Resume: Target review checks (1 hr)", "🔬 Research: Solo lock-in (1 hr)"]
+            },
+            5: { // Friday
+                title: "Structural Core & Collaboration Syncs",
+                desc: "Decompressing training volumes to prioritize major project alignment.",
+                tasks: ["🏋️‍♂️ Strength: 30m core, mobility & balance focus", "🤝 ECN DOSE: Brainstorm session with Ryan (1 hr)", "🔬 Research: Master sync meeting (2 hr)", "🔬 Research: Solo lock-in (1 hr)"]
+            },
+            6: { // Saturday
+                title: "Zone 2 Endurance Extension",
+                desc: "Long extended output threshold blocks.",
+                tasks: ["🚴‍♂️ Bike: 75–90m Zone 2 endurance ride", "🛫 Transfer Apps: Complete application package blocks (2 hr)", "🔬 Research: Solo lock-in (1 hr)"]
+            }
+        };
+
+        // Date Calculations matching 2026 Anchor Targets
+        const raceDate = new Date("2026-12-31");
+        const summerEndDate = new Date("2026-09-15");
+        const summerStartDate = new Date("2026-06-01"); // Base baseline reference line
+
+        // Use precise browser clock matching your system environment 
+        let systemToday = new Date();
+        let selectedDayIndex = systemToday.getDay(); // Tracks what day user is viewing
+
+        // Local Storage State Managers
+        function getStorageKey(dateObj) {
+            return `hq_tasks_${dateObj.getFullYear()}-${dateObj.getMonth()+1}-${dateObj.getDate()}`;
+        }
+
+        function loadTasksForDay(dateObj) {
+            const key = getStorageKey(dateObj);
+            const saved = localStorage.getItem(key);
+            const dayOfWeek = dateObj.getDay();
+            const defaults = routineTemplate[dayOfWeek].tasks;
+            
+            if (saved) {
+                return JSON.parse(saved);
+            } else {
+                // Map array to object structure
+                return defaults.map(t => ({ text: t, completed: false }));
+            }
+        }
+
+        function saveTasksForDay(dateObj, taskArray) {
+            const key = getStorageKey(dateObj);
+            localStorage.setItem(key, JSON.stringify(taskArray));
+            calculateMacroProgress();
+        }
+
+        // DOM RENDERING ENGINES
+        function initializeDashboard() {
+            // Setup Date Strings
+            const options = { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' };
+            document.getElementById("current-date-str").innerText = systemToday.toLocaleDateString('en-US', options).toUpperCase();
+            
+            const msToRace = raceDate - systemToday;
+            const daysToRace = Math.max(0, Math.ceil(msToRace / (1000 * 60 * 60 * 24)));
+            document.getElementById("countdown-banner").innerText = `Pre-training phase · ${daysToRace} days to race day`;
+
+            renderWeekStrip();
+            renderActiveDay(systemToday);
+            calculateMacroProgress();
+        }
+
+        function renderWeekStrip() {
+            const stripContainer = document.getElementById("week-strip");
+            stripContainer.innerHTML = "";
+            
+            // Generate standard viewing frame of past/present/future days centered around current week context
+            let startOfWeek = new Date(systemToday);
+            startOfWeek.setDate(systemToday.getDate() - systemToday.getDay()); // Snap back to current week Sunday
+            
+            for (let i = 0; i < 7; i++) {
+                let currentDayIter = new Date(startOfWeek);
+                currentDayIter.setDate(startOfWeek.getDate() + i);
+                
+                const isSystemToday = currentDayIter.toDateString() === systemToday.toDateString();
+                const isSelected = currentDayIter.getDay() === selectedDayIndex;
+                
+                // Pull compliance completion statuses for tiny visual dot indicators
+                const dayTasks = loadTasksForDay(currentDayIter);
+                const allDone = dayTasks.length > 0 && dayTasks.every(t => t.completed);
+
+                const dayCard = document.createElement("button");
+                dayCard.className = `flex flex-col items-center p-2.5 rounded-lg border transition ${
+                    isSelected 
+                    ? 'bg-zinc-100 text-zinc-950 border-white' 
+                    : 'bg-[#141416] text-zinc-400 border-zinc-800/80 hover:border-zinc-700'
+                }`;
+                
+                dayCard.onclick = () => {
+                    selectedDayIndex = i;
+                    let targetDate = new Date(startOfWeek);
+                    targetDate.setDate(startOfWeek.getDate() + i);
+                    renderActiveDay(targetDate);
+                    renderWeekStrip(); // Redraw selection outline states
+                };
+
+                dayCard.innerHTML = `
+                    <span class="text-[10px] uppercase font-semibold tracking-wider">${currentDayIter.toLocaleDateString('en-US', {weekday: 'short'})}</span>
+                    <span class="text-base font-bold mt-0.5">${currentDayIter.getDate()}</span>
+                    <span class="w-1 h-1 rounded-full mt-1.5 ${allDone ? 'bg-emerald-400' : 'bg-zinc-700'}"></span>
+                `;
+                stripContainer.appendChild(dayCard);
+            }
+        }
+
+        function renderActiveDay(targetDate) {
+            const dayOfWeek = targetDate.getDay();
+            const referenceData = routineTemplate[dayOfWeek];
+            
+            document.getElementById("today-title").innerText = referenceData.title;
+            document.getElementById("today-desc").innerText = referenceData.desc;
+
+            const tasks = loadTasksForDay(targetDate);
+            const container = document.getElementById("tasks-container");
+            container.innerHTML = "";
+
+            tasks.forEach((task, index) => {
+                const taskRow = document.createElement("div");
+                taskRow.className = "flex items-center space-x-3 bg-zinc-900/40 border border-zinc-800/60 rounded-lg p-3 hover:bg-zinc-900/90 transition";
+                
+                taskRow.innerHTML = `
+                    <input type="checkbox" ${task.completed ? 'checked' : ''} 
+                        class="w-4 h-4 rounded bg-zinc-950 border-zinc-700 text-purple-600 focus:ring-purple-500 focus:ring-offset-zinc-900"
+                        id="task-${index}"
+                    >
+                    <label for="task-${index}" class="text-sm cursor-pointer select-none transition flex-1 ${task.completed ? 'line-through text-zinc-500' : 'text-zinc-200'}">
+                        ${task.text}
+                    </label>
+                `;
+
+                // Add Toggle Event Listeners
+                taskRow.querySelector('input').addEventListener('change', (e) => {
+                    tasks[index].completed = e.target.checked;
+                    saveTasksForDay(targetDate, tasks);
+                    
+                    // Live UI Updates
+                    updateDailyProgressMeter(tasks);
+                    renderWeekStrip(); 
+                });
+
+                container.appendChild(taskRow);
+            });
+
+            updateDailyProgressMeter(tasks);
+        }
+
+        function updateDailyProgressMeter(tasks) {
+            const total = tasks.length;
+            const completed = tasks.filter(t => t.completed).length;
+            const pct = total > 0 ? Math.round((completed / total) * 100) : 0;
+            
+            document.getElementById("daily-percentage").innerText = `${pct}% Done`;
+            document.getElementById("daily-progress-bar").style.width = `${pct}%`;
+        }
+
+        function calculateMacroProgress() {
+            // 1. Weekly aggregate updates
+            let startOfWeek = new Date(systemToday);
+            startOfWeek.setDate(systemToday.getDate() - systemToday.getDay());
+            
+            let totalWeeklyTasks = 0;
+            let completedWeeklyTasks = 0;
+
+            for(let i=0; i<7; i++) {
+                let iter = new Date(startOfWeek);
+                iter.setDate(startOfWeek.getDate() + i);
+                const tasks = loadTasksForDay(iter);
+                totalWeeklyTasks += tasks.length;
+                completedWeeklyTasks += tasks.filter(t => t.completed).length;
+            }
+
+            const weekPct = totalWeeklyTasks > 0 ? (completedWeeklyTasks / totalWeeklyTasks) * 100 : 0;
+            document.getElementById("weekly-total-text").innerText = `${completedWeeklyTasks}/${totalWeeklyTasks} verified`;
+            document.getElementById("weekly-progress-bar").style.width = `${weekPct}%`;
+
+            // 2. Summer Countdown Timeline math
+            const totalSummerMs = summerEndDate - summerStartDate;
+            const totalSummerDays = Math.ceil(totalSummerMs / (1000 * 60 * 60 * 24));
+            
+            const currentSummerMsLeft = summerEndDate - systemToday;
+            const currentSummerDaysLeft = Math.max(0, Math.ceil(currentSummerMsLeft / (1000 * 60 * 60 * 24)));
+            
+            document.getElementById("summer-days-left").innerText = `${currentSummerDaysLeft} days remaining`;
+            
+            const summerElapsedDays = totalSummerDays - currentSummerDaysLeft;
+            const summerTimelinePct = Math.min(100, Math.max(0, (summerElapsedDays / totalSummerDays) * 100));
+            document.getElementById("summer-progress-bar").style.width = `${summerTimelinePct}%`;
+        }
+
+        // Initialize Core Engine on Window Load
+        window.onload = initializeDashboard;
+    </script>
+</body>
+</html>
